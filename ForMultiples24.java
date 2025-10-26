@@ -3,23 +3,31 @@ import java.util.Scanner;
 public class ForMultiples24 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        
-        int multiple, sum = 0, counter = 0;
 
-        // Step 6: Get user input
-        System.out.print("Input the multiple: ");
+        int multiple, sum = 0, counter = 0;
+        double average = 0;
+
+        System.out.print("Enter a number to find its multiples between 1 and 50: ");
         multiple = input.nextInt();
 
-        // Step 7: Loop to find multiples and calculate sum and count
+        System.out.println("\nMultiples of " + multiple + " between 1 and 50 are:");
+
         for (int i = 1; i <= 50; i++) {
             if (i % multiple == 0) {
-                sum = sum + i;
+                System.out.print(i + " ");
+                sum += i;
                 counter++;
             }
         }
 
-        // Step 8: Display results
-        System.out.printf("There are %d numbers that are multiple of %d in range 1 to 50.\n", counter, multiple);
-        System.out.printf("The sum of all multiples of %d in range 1 to 50 is %d.\n", multiple, sum);
+        if (counter > 0) {
+            average = (double) sum / counter;
+        }
+
+        System.out.println("\n\nTotal count of multiples: " + counter);
+        System.out.println("Sum of all multiples: " + sum);
+        System.out.println("Average of all multiples: " + average);
+
+        input.close();
     }
 }
