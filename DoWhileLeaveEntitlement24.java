@@ -5,40 +5,43 @@ public class DoWhileLeaveEntitlement24 {
 
         Scanner input = new Scanner(System.in);
 
-        int leaveEntitlement, numLeave;
-        String confirmation;
-
-        System.out.print("Input the number of leave entitlement: ");
-        leaveEntitlement = input.nextInt();
+        int leaveEntitlement = 5; // total leave available
+        int numLeave;             // number of leave days to take
+        String confirmation;      // to continue or not
 
         do {
-            System.out.print("Do you want to take a leave (y/n)? ");
-            confirmation = input.next();
+            System.out.println("Remaining leave days: " + leaveEntitlement);
 
-            if (confirmation.equalsIgnoreCase("y")) {
-                System.out.print("How many day(s)? ");
+            // Loop until user enters valid number
+            do {
+                System.out.print("Enter number of leave days to use: ");
                 numLeave = input.nextInt();
 
-                if (numLeave <= leaveEntitlement) {
-                    leaveEntitlement -= numLeave;
-                    System.out.println("Remaining leave entitlement: " + leaveEntitlement);
-
-                    if (leaveEntitlement <= 2 && leaveEntitlement > 0) {
-                        System.out.println("⚠ Warning: You only have " + leaveEntitlement + " day(s) of leave left!");
-                    }
-                } else {
-                    System.out.println("You don't have enough leave entitlement.");
-                    break;
+                if (numLeave > leaveEntitlement) {
+                    System.out.println("You cannot take more leave than remaining! Please try again.");
                 }
-            } else {
-                System.out.println("No leave taken.");
+            } while (numLeave > leaveEntitlement); // repeat input until valid
+
+            // Deduct leave
+            leaveEntitlement -= numLeave;
+            System.out.println("You have used " + numLeave + " day(s) of leave.");
+
+            // Warning when only 2 days remain
+            if (leaveEntitlement == 2) {
+                System.out.println("⚠ Warning: Only 2 days of leave remaining! Please stop using your leave.");
+            }
+
+            // Stop when leave runs out
+            if (leaveEntitlement <= 0) {
+                System.out.println("You have no leave days remaining.");
                 break;
             }
 
-        } while (leaveEntitlement > 0);
+            System.out.print("Do you want to take more leave? (yes/no): ");
+            confirmation = input.next();
 
-        System.out.println("Leave calculation finished.");
-        input.close();
+        } while (confirmation.equalsIgnoreCase("yes") && leaveEntitlement > 0);
+
+        System.out.println("Program ended. Remaining leave: " + leaveEntitlement);
     }
 }
-    

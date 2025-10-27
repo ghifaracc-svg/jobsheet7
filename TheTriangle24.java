@@ -5,17 +5,21 @@ public class TheTriangle24 {
         Scanner input = new Scanner(System.in);
 
         int numInput;
-        int i = 0;
         String s = "";
 
-        System.out.print("Input some number: ");
+        System.out.print("Enter a number: ");
         numInput = input.nextInt();
 
-        while (i < numInput) {
-            s += " *";
-            System.out.println(s);
-            i++;
+        for (int i = 0; i < numInput * numInput; i++) {
+            s += "* ";
+
+            if ((i + 1) % numInput == 0) {
+                s += "\n";
+            }
         }
+
+        System.out.println("\nRectangle pattern:");
+        System.out.println(s);
 
         input.close();
     }
