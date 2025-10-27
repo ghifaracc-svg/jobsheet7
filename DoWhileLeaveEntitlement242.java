@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
-public class DoWhileLeaveEntitlement24 {
+public class DoWhileLeaveEntitlement242
+2 {
     public static void main(String[] args) {
-
         Scanner input = new Scanner(System.in);
 
         int leaveEntitlement = 5; // total leave available
@@ -37,8 +37,14 @@ public class DoWhileLeaveEntitlement24 {
                 break;
             }
 
-            System.out.print("Do you want to take more leave? (yes/no): ");
+            System.out.print("Do you want to take more leave? (yes/no/t): ");
             confirmation = input.next();
+
+            // ✅ New condition: stop when user enters "t"
+            if (confirmation.equalsIgnoreCase("t")) {
+                System.out.println("Program stopped by user (input = 't').");
+                break;
+            }
 
         } while (confirmation.equalsIgnoreCase("yes") && leaveEntitlement > 0);
 
